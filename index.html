@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Kho Content Tuyển sinh 2026 – FPT Polytechnic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ── CSS Variables ── */
+  :root {
+    --orange: #FF5C1A;
+    --orange-light: #FF7A42;
+    --orange-dim: rgba(255,92,26,0.12);
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E44;
+    --navy-light: #243750;
+    --slate: #8FA3B8;
+    --slate-light: #B8CCDE;
+    --white: #FFFFFF;
+    --off-white: #F4F7FA;
+    --border: rgba(143,163,184,0.2);
+    --shadow: 0 2px 12px rgba(13,27,42,0.18);
+    --shadow-lg: 0 8px 32px rgba(13,27,42,0.28);
+    --radius: 14px;
+    --radius-sm: 8px;
+    --font: 'Be Vietnam Pro', sans-serif;
+    --transition: 0.2s cubic-bezier(.4,0,.2,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, #0A2240 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .logo-badge {
+    background: var(--orange);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .header-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+
+  .header-sub {
+    font-size: 11px;
+    color: var(--slate);
+    font-weight: 400;
+    margin-top: 1px;
+  }
+
+  /* ── SEARCH ── */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--slate);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  #searchInput {
+    width: 100%;
+    background: var(--navy-light);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 10px 12px 10px 38px;
+    outline: none;
+    transition: border-color var(--transition);
+  }
+
+  #searchInput:focus { border-color: var(--orange); }
+  #searchInput::placeholder { color: var(--slate); }
+
+  .clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--slate);
+    border: none;
+    color: var(--navy);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 11px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .clear-btn.visible { display: flex; }
+
+  /* ── FILTERS ── */
+  .filters-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .filter-select {
+    background: var(--navy-light);
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 13px;
+    padding: 8px 10px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color var(--transition);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238FA3B8' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 28px;
+    width: 100%;
+  }
+
+  .filter-select:focus { border-color: var(--orange); }
+
+  .filter-select.active {
+    border-color: var(--orange);
+    background-color: rgba(255,92,26,0.08);
+    color: var(--orange-light);
+  }
+
+  /* ── RESET FILTERS ── */
+  .filters-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0 2px;
+  }
+
+  .result-count {
+    font-size: 12px;
+    color: var(--slate);
+    font-weight: 500;
+  }
+
+  .result-count span {
+    color: var(--orange-light);
+    font-weight: 700;
+  }
+
+  .reset-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--slate);
+    font-family: var(--font);
+    font-size: 11px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: none;
+  }
+
+  .reset-btn.visible {
+    display: block;
+  }
+
+  .reset-btn:active {
+    background: var(--navy-light);
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    padding: 10px 12px 80px;
+  }
+
+  /* ── CARD GRID ── */
+  #cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--transition), border-color var(--transition);
+    animation: fadeIn 0.25s ease both;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card:active { transform: scale(0.99); }
+
+  /* Accent line theo định dạng */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--fmt-color, var(--slate));
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* ── CARD HEADER ── */
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.45;
+    flex: 1;
+    /* hiển thị tối đa 3 dòng */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── BADGES ── */
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 11px;
+  }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 5px;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  .badge-cs   { background: rgba(99,179,237,0.15); color: #63B3ED; }
+  .badge-nganh{ background: rgba(154,230,180,0.15); color: #68D391; }
+  .badge-fmt  { background: rgba(var(--fmt-rgb,143,163,184),0.18); color: var(--fmt-color, var(--slate-light)); }
+  .badge-tag  { background: rgba(255,210,63,0.15); color: #FFD23F; font-size: 13px; padding: 2px 6px; }
+  .badge-status-ok  { background: rgba(104,211,145,0.12); color: #68D391; }
+  .badge-status-warn{ background: rgba(255,200,80,0.12); color: #F6C343; }
+
+  /* ── CARD ACTIONS ── */
+  .card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .btn-copy {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--orange);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .btn-copy:active { background: var(--orange-light); transform: scale(0.97); }
+
+  .btn-copy.copied {
+    background: #27AE60;
+  }
+
+  .btn-open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--navy-light);
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    color: var(--slate-light);
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: all var(--transition);
+    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    font-size: 16px;
+  }
+
+  .btn-open:active { background: var(--navy); color: var(--white); }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    display: none;
+  }
+
+  .empty-state.visible { display: block; }
+
+  .empty-icon { font-size: 48px; margin-bottom: 14px; opacity: 0.6; }
+
+  .empty-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--slate-light);
+    margin-bottom: 6px;
+  }
+
+  .empty-sub { font-size: 13px; color: var(--slate); }
+
+  /* ── LOADING ── */
+  .loading-state {
+    text-align: center;
+    padding: 60px 20px;
+  }
+
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--border);
+    border-top-color: var(--orange);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 14px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .loading-text { color: var(--slate); font-size: 13px; }
+
+  /* ── ERROR STATE ── */
+  .error-state {
+    background: rgba(220,53,69,0.1);
+    border: 1px solid rgba(220,53,69,0.3);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+    display: none;
+  }
+
+  .error-state.visible { display: block; }
+
+  .error-icon { font-size: 32px; margin-bottom: 8px; }
+  .error-title { font-size: 14px; font-weight: 700; color: #FF6B6B; margin-bottom: 6px; }
+  .error-sub { font-size: 12px; color: var(--slate); line-height: 1.5; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: #27AE60;
+    color: white;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 22px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-lg);
+    z-index: 999;
+    transition: transform 0.3s cubic-bezier(.34,1.56,.64,1);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── FORMAT COLORS ── */
+  .fmt-short-video { --fmt-color: #A78BFA; --fmt-rgb: 167,139,250; }
+  .fmt-video       { --fmt-color: #60A5FA; --fmt-rgb:  96,165,250; }
+  .fmt-tvc         { --fmt-color: #F97316; --fmt-rgb: 249,115, 22; }
+  .fmt-bai-web     { --fmt-color: #34D399; --fmt-rgb:  52,211,153; }
+  .fmt-post-fb     { --fmt-color: #FB7185; --fmt-rgb: 251,113,133; }
+  .fmt-anh         { --fmt-color: #FBBF24; --fmt-rgb: 251,191, 36; }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="header-top">
+    <div class="logo-badge">FPT Poly</div>
+    <div>
+      <div class="header-title">Kho Content Tuyển sinh 2026</div>
+      <div class="header-sub">Tìm nhanh – Copy link – Gửi Zalo</div>
+    </div>
+  </div>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Tìm theo tiêu đề nội dung..." autocomplete="off" />
+    <button class="clear-btn" id="clearSearch" title="Xoá tìm kiếm">✕</button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-row">
+    <select class="filter-select" id="filterCoSo">
+      <option value="">📍 Tất cả cơ sở</option>
+    </select>
+    <select class="filter-select" id="filterNganh">
+      <option value="">🎓 Tất cả ngành</option>
+    </select>
+    <select class="filter-select" id="filterChuDe">
+      <option value="">💬 Tất cả chủ đề</option>
+    </select>
+    <select class="filter-select" id="filterDinhDang">
+      <option value="">🎬 Tất cả định dạng</option>
+    </select>
+  </div>
+
+  <!-- Meta row -->
+  <div class="filters-meta">
+    <div class="result-count" id="resultCount">Đang tải dữ liệu...</div>
+    <button class="reset-btn" id="resetBtn">Bỏ lọc</button>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main class="main">
+  <!-- Loading -->
+  <div class="loading-state" id="loadingState">
+    <div class="spinner"></div>
+    <div class="loading-text">Đang tải kho nội dung...</div>
+  </div>
+
+  <!-- Error -->
+  <div class="error-state" id="errorState">
+    <div class="error-icon">😕</div>
+    <div class="error-title">Không tải được dữ liệu</div>
+    <div class="error-sub" id="errorMsg">Vui lòng kiểm tra kết nối mạng và thử lại.</div>
+  </div>
+
+  <!-- Card list -->
+  <div id="cardList"></div>
+
+  <!-- Empty -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">🔎</div>
+    <div class="empty-title">Không tìm thấy nội dung phù hợp</div>
+    <div class="empty-sub">Thử thay đổi bộ lọc hoặc từ khoá tìm kiếm</div>
+  </div>
+</main>
+
+<!-- Toast thông báo copy -->
+<div class="toast" id="toast">✅ Đã copy link!</div>
+
+<script>
+// ─────────────────────────────────────────────
+// CẤU HÌNH – Thay URL Google Sheet vào đây khi deploy
+// ─────────────────────────────────────────────
+const SHEET_CSV_URL = ''; // VD: 'https://docs.google.com/spreadsheets/d/.../pub?output=csv'
+
+// ─────────────────────────────────────────────
+// DỮ LIỆU MẪU (dùng khi chưa có Sheet URL)
+// ─────────────────────────────────────────────
+const SAMPLE_DATA = [
+  {stt:'1',coSo:'Toàn quốc',nhomNganh:'Chung',chuDe:'Case SV thành công, CĐ vs ĐH',dinhDang:'Short Video',tieuDe:'Tự ti vì học Cao đẳng – Chia sẻ của case sinh viên thành công – Diễn biến thay đổi tâm lý: Tự ti → Tìm được hướng đi riêng → Lời nhắn cho 2k7',linkChinh:'https://www.facebook.com/share/v/1FsJwytLdS/',tag:'🔥 Hot',nguon:'KOCs',trangThai:'⚠️ Cần review'},
+  {stt:'2',coSo:'Hà Nam',nhomNganh:'Tiếng Trung',chuDe:'Ngành học',dinhDang:'Video',tieuDe:'VTV3 đưa tin về ngành tiếng Trung – Khuyến khích học và làm tại địa phương Ninh Bình – Có phỏng vấn sinh viên',linkChinh:'https://www.facebook.com/share/v/1GpFabdxDJ/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'3',coSo:'Hà Nội',nhomNganh:'TKĐH',chuDe:'Case SV thành công',dinhDang:'Ảnh/bộ ảnh',tieuDe:'Cựu sinh viên ngành TKDH Kiếm được 3000 USD mỗi tháng, startup thành công với studio – Dương Linh Phi',linkChinh:'https://www.facebook.com/share/p/1JJarvyewS/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'4',coSo:'Toàn quốc',nhomNganh:'Chung',chuDe:'Việc làm',dinhDang:'Ảnh/bộ ảnh',tieuDe:'BÁO CHÍ "DẬY SÓNG" VỚI LOẠT SINH VIÊN FPT POLYTECHNIC THỰC TẬP TẠI MỸ SỞ HỮU NHẬN THU NHẬP NGHÌN ĐÔ',linkChinh:'https://www.facebook.com/share/p/1axkioQ2JK/',tag:'',nguon:'Báo chí',trangThai:'⚠️ Cần review'},
+  {stt:'5',coSo:'Hà Nội',nhomNganh:'Digital MKT',chuDe:'Case SV thành công',dinhDang:'Video',tieuDe:'NGUYỄN THÙY DUNG – CÔ NÀNG DIGITAL MARKETING TRIỆU VIEWS – Thu nhập 20 triệu/tháng sau 6 tháng đi làm',linkChinh:'https://www.facebook.com/share/r/1Gi5tbqCh6/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'6',coSo:'TP.HCM',nhomNganh:'Chung',chuDe:'Việc làm',dinhDang:'Ảnh/bộ ảnh',tieuDe:'Báo chí đưa tin về JobFair TP HCM 2026 – Hơn 50 doanh nghiệp, 2.000 sinh viên, 1.000+ cơ hội việc làm',linkChinh:'https://www.facebook.com/share/p/18XGjwewPF/',tag:'',nguon:'Báo chí',trangThai:'✅ Đang dùng'},
+  {stt:'7',coSo:'Toàn quốc',nhomNganh:'Chip bán dẫn',chuDe:'Ngành học',dinhDang:'Short Video',tieuDe:'Video mkt giới thiệu về ngành Chip & bán dẫn – ngành khát nhân lực 2025 – mức lương và cơ hội',linkChinh:'https://www.facebook.com/share/r/18EiFpuPB3/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'8',coSo:'Toàn quốc',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Hoạt động SV',dinhDang:'TVC',tieuDe:'Recap toàn quốc Arduino Day 2026',linkChinh:'https://www.facebook.com/share/v/1DpGCbTmVZ/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'9',coSo:'Toàn quốc',nhomNganh:'Chung',chuDe:'Ngành học',dinhDang:'Short Video',tieuDe:'Doanh nghiệp dành lời khuyên cho 2k8 khi chọn ngành – Phỏng vấn doanh nghiệp ngành Dược, Viễn thông',linkChinh:'https://www.facebook.com/share/r/14dk6MoGDAb/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'10',coSo:'Đà Nẵng',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Hoạt động SV',dinhDang:'TVC',tieuDe:'Recap Arduino day 2026 tại Đà Nẵng',linkChinh:'https://www.facebook.com/share/v/14auGfRQu77/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'11',coSo:'Toàn quốc',nhomNganh:'Cơ khí-Điện-TĐH',chuDe:'Ngành học',dinhDang:'Short Video',tieuDe:'Chuyện nghề ngành tự động hóa – Giảng viên chia sẻ khó khăn, quy trình tạo ra sản phẩm',linkChinh:'https://www.facebook.com/share/r/1BT5xcD5tG/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'12',coSo:'Toàn quốc',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'KOL & KOCs nói về trường',dinhDang:'Short Video',tieuDe:'Chuyên gia tại Arduino, Qualcomm tiết lộ lí do lựa chọn bắt tay cùng FPT Polytechnic',linkChinh:'https://www.facebook.com/share/r/18f5eKwN7u/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'13',coSo:'Toàn quốc',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Sự kiện',dinhDang:'Ảnh/bộ ảnh',tieuDe:'Những con số nổi bật từ sự kiện Arduino Day – 1000+ người, 100 bài social, 100 đội thi/cơ sở',linkChinh:'https://www.facebook.com/share/p/1Fonmzq2vx/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'14',coSo:'Toàn quốc',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Hoạt động SV',dinhDang:'Ảnh/bộ ảnh',tieuDe:'Bài báo đưa tin về sự kiện Arduino Day 2026',linkChinh:'https://www.facebook.com/share/p/1Cg7KdK1tU/',tag:'',nguon:'Báo chí',trangThai:'✅ Đang dùng'},
+  {stt:'15',coSo:'Toàn quốc',nhomNganh:'Chip bán dẫn',chuDe:'Ngành học',dinhDang:'Video',tieuDe:'Hiệu trưởng Vũ Chí Thành trả lời phỏng vấn tại "Nhân lực - Mắt xích quyết định" trên ANTV – Đào tạo nhân lực chip bán dẫn',linkChinh:'https://www.facebook.com/share/v/1DnswY4RwC/',tag:'',nguon:'Báo chí',trangThai:'✅ Đang dùng'},
+  {stt:'16',coSo:'TP.HCM',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Hoạt động SV',dinhDang:'TVC',tieuDe:'ARDUINO DAY 2026 TẠI FPT POLYTECHNIC TP HCM',linkChinh:'https://www.facebook.com/share/v/18TENnNTtx/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'17',coSo:'Toàn quốc',nhomNganh:'Chip bán dẫn',chuDe:'Ngành học',dinhDang:'Video',tieuDe:'Hiệu trưởng Vũ Chí Thành trả lời phỏng vấn tại "Xây dựng lá chắn tự chủ" trên ANTV – Đào tạo nhân lực bán dẫn, tự chủ công nghệ quốc gia',linkChinh:'https://www.facebook.com/share/v/18Kmp5UDxt/',tag:'🔥 Hot',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'18',coSo:'Toàn quốc',nhomNganh:'Chung',chuDe:'Kỳ thi THPT',dinhDang:'Video',tieuDe:'Bộ công bố: nếu điểm thi 3 môn THPT < 15 điểm thì không thể vào đại học – Lối thoát nào cho 2k8? Xét tuyển FPT Polytechnic',linkChinh:'https://www.facebook.com/share/r/18QqP5eADA/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'19',coSo:'Thái Nguyên',nhomNganh:'Chung',chuDe:'Sự kiện',dinhDang:'Ảnh/bộ ảnh',tieuDe:'FPT POLYTECHNIC THÁI NGUYÊN PHỦ SÓNG MẠNH MẼ TOÀN ĐỊA BÀN TỈNH – 15 trường THPT, 4.800+ học sinh',linkChinh:'https://www.facebook.com/share/p/1CV6RWifYQ/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+  {stt:'20',coSo:'Hà Nội',nhomNganh:'Cơ khí-Điện-TĐH, Chip bán dẫn',chuDe:'Hoạt động SV, Sự kiện',dinhDang:'Ảnh/bộ ảnh',tieuDe:'Recap Arduino Day 2026 Hà Nội',linkChinh:'https://www.facebook.com/share/v/18LQyyjHmn/',tag:'',nguon:'PR',trangThai:'✅ Đang dùng'},
+];
+
+// ─────────────────────────────────────────────
+// STATE
+// ─────────────────────────────────────────────
+let allData = [];
+let filteredData = [];
+
+const state = {
+  search: '',
+  coSo: '',
+  nganh: '',
+  chuDe: '',
+  dinhDang: ''
+};
+
+// ─────────────────────────────────────────────
+// PARSE CSV (tách bằng dấu ; và xử lý multiline)
+// ─────────────────────────────────────────────
+function parseCSV(raw) {
+  const lines = raw.split(/\r?\n/);
+  if (!lines.length) return [];
+
+  const headers = lines[0].split(';').map(h => h.trim().replace(/^\uFEFF/, ''));
+  const result = [];
+
+  // Map index dựa vào tên cột
+  const idx = {
+    stt:       headers.indexOf('STT'),
+    coSo:      headers.indexOf('Cơ sở'),
+    nhomNganh: headers.indexOf('Nhóm ngành'),
+    chuDe:     headers.indexOf('Chủ đề'),
+    dinhDang:  headers.indexOf('Định dạng'),
+    tieuDe:    headers.indexOf('Tiêu đề'),
+    linkChinh: headers.indexOf('Link chính public'),
+    tag:       headers.indexOf('Tag'),
+    nguon:     headers.indexOf('Nguồn'),
+    trangThai: headers.indexOf('Trạng thái'),
+  };
+
+  for (let i = 1; i < lines.length; i++) {
+    const cells = lines[i].split(';');
+    if (!cells[idx.stt] || !cells[idx.stt].trim()) continue; // bỏ dòng trống
+
+    result.push({
+      stt:       cells[idx.stt]?.trim()       || '',
+      coSo:      cells[idx.coSo]?.trim()      || '',
+      nhomNganh: cells[idx.nhomNganh]?.trim() || '',
+      chuDe:     cells[idx.chuDe]?.trim()     || '',
+      dinhDang:  cells[idx.dinhDang]?.trim()  || '',
+      tieuDe:    cells[idx.tieuDe]?.trim()    || '',
+      linkChinh: cells[idx.linkChinh]?.trim() || '',
+      tag:       cells[idx.tag]?.trim()       || '',
+      nguon:     cells[idx.nguon]?.trim()     || '',
+      trangThai: cells[idx.trangThai]?.trim() || '',
+    });
+  }
+
+  return result;
+}
+
+// ─────────────────────────────────────────────
+// LOAD DATA – Sheet CSV hoặc fallback mẫu
+// ─────────────────────────────────────────────
+async function loadData() {
+  showLoading(true);
+  hideError();
+
+  if (SHEET_CSV_URL) {
+    try {
+      const resp = await fetch(SHEET_CSV_URL, { cache: 'no-cache' });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const text = await resp.text();
+      allData = parseCSV(text).filter(r => r.linkChinh);
+      if (!allData.length) throw new Error('Sheet trống hoặc không có dữ liệu hợp lệ.');
+    } catch (err) {
+      // Fallback về dữ liệu mẫu nếu lỗi
+      console.warn('[KhoContent] Load Sheet lỗi:', err.message);
+      showError(`Không thể tải từ Google Sheet. Đang dùng dữ liệu mẫu.\n(${err.message})`);
+      allData = SAMPLE_DATA;
+    }
+  } else {
+    // Chưa có URL – dùng dữ liệu mẫu
+    allData = SAMPLE_DATA;
+  }
+
+  showLoading(false);
+  buildFilterOptions();
+  applyFilters();
+}
+
+// ─────────────────────────────────────────────
+// BUILD FILTER DROPDOWNS
+// ─────────────────────────────────────────────
+function buildFilterOptions() {
+  // Lấy các giá trị duy nhất, bỏ rỗng, sắp xếp
+  const unique = (field) => [...new Set(
+    allData.flatMap(d => d[field].split(',').map(v => v.trim()))
+  )].filter(Boolean).sort((a, b) => a.localeCompare(b, 'vi'));
+
+  fillSelect('filterCoSo',    unique('coSo'),      '📍 Tất cả cơ sở');
+  fillSelect('filterNganh',   unique('nhomNganh'),  '🎓 Tất cả ngành');
+  fillSelect('filterChuDe',   unique('chuDe'),      '💬 Tất cả chủ đề');
+  fillSelect('filterDinhDang',unique('dinhDang'),   '🎬 Tất cả định dạng');
+}
+
+function fillSelect(id, values, placeholder) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = `<option value="">${placeholder}</option>` +
+    values.map(v => `<option value="${esc(v)}">${v}</option>`).join('');
+}
+
+// ─────────────────────────────────────────────
+// FILTER + SEARCH
+// ─────────────────────────────────────────────
+function applyFilters() {
+  const q = state.search.toLowerCase().trim();
+
+  filteredData = allData.filter(d => {
+    // Search theo tiêu đề
+    if (q && !d.tieuDe.toLowerCase().includes(q)) return false;
+
+    // Filter đa tầng – mỗi trường có thể multi-value (phân cách dấu phẩy)
+    if (state.coSo    && !matchMulti(d.coSo,      state.coSo))    return false;
+    if (state.nganh   && !matchMulti(d.nhomNganh, state.nganh))   return false;
+    if (state.chuDe   && !matchMulti(d.chuDe,     state.chuDe))   return false;
+    if (state.dinhDang && !matchMulti(d.dinhDang,  state.dinhDang)) return false;
+
+    return true;
+  });
+
+  renderCards();
+  updateResultCount();
+  updateResetBtn();
+}
+
+// Kiểm tra trường multi-value (VD: "Cơ khí, Chip bán dẫn") có chứa giá trị cần filter ko
+function matchMulti(fieldVal, filterVal) {
+  return fieldVal.split(',').map(v => v.trim()).some(v => v === filterVal);
+}
+
+// ─────────────────────────────────────────────
+// RENDER CARDS
+// ─────────────────────────────────────────────
+function renderCards() {
+  const list = document.getElementById('cardList');
+  const empty = document.getElementById('emptyState');
+
+  if (!filteredData.length) {
+    list.innerHTML = '';
+    empty.classList.add('visible');
+    return;
+  }
+
+  empty.classList.remove('visible');
+
+  list.innerHTML = filteredData.map((d, i) => {
+    const fmtClass = getFmtClass(d.dinhDang);
+    const statusBadge = d.trangThai.includes('✅')
+      ? `<span class="badge badge-status-ok">${d.trangThai}</span>`
+      : d.trangThai
+        ? `<span class="badge badge-status-warn">${d.trangThai}</span>`
+        : '';
+
+    const tagBadge = d.tag
+      ? `<span class="badge badge-tag">${d.tag}</span>`
+      : '';
+
+    // Delay animation theo thứ tự card
+    const delay = Math.min(i * 30, 300);
+
+    return `
+    <div class="card ${fmtClass}" style="animation-delay:${delay}ms">
+      <div class="card-header">
+        <div class="card-title">${esc(d.tieuDe)}</div>
+      </div>
+      <div class="badges">
+        <span class="badge badge-cs">${esc(d.coSo)}</span>
+        <span class="badge badge-nganh">${esc(d.nhomNganh)}</span>
+        <span class="badge badge-fmt">${esc(d.dinhDang)}</span>
+        ${tagBadge}
+        ${statusBadge}
+      </div>
+      <div class="card-actions">
+        <button class="btn-copy" onclick="copyLink(this, '${esc(d.linkChinh)}')">
+          📋 Copy Link
+        </button>
+        <a class="btn-open" href="${esc(d.linkChinh)}" target="_blank" rel="noopener" title="Mở link">
+          🔗
+        </a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Mapping định dạng → CSS class (cho accent color)
+function getFmtClass(fmt) {
+  const f = fmt.toLowerCase();
+  if (f.includes('short')) return 'fmt-short-video';
+  if (f.includes('tvc'))   return 'fmt-tvc';
+  if (f.includes('video')) return 'fmt-video';
+  if (f.includes('web'))   return 'fmt-bai-web';
+  if (f.includes('post') || f.includes('fb')) return 'fmt-post-fb';
+  if (f.includes('ảnh') || f.includes('anh')) return 'fmt-anh';
+  return '';
+}
+
+// ─────────────────────────────────────────────
+// COPY LINK
+// ─────────────────────────────────────────────
+function copyLink(btn, url) {
+  if (!url) return;
+  navigator.clipboard.writeText(url.trim()).then(() => {
+    // Đổi màu nút
+    btn.classList.add('copied');
+    btn.textContent = '✅ Đã copy!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.textContent = '📋 Copy Link';
+    }, 2000);
+    showToast();
+  }).catch(() => {
+    // Fallback cho trình duyệt không hỗ trợ clipboard API
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast();
+  });
+}
+
+// ─────────────────────────────────────────────
+// TOAST
+// ─────────────────────────────────────────────
+let toastTimer;
+function showToast() {
+  const toast = document.getElementById('toast');
+  clearTimeout(toastTimer);
+  toast.classList.add('show');
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// ─────────────────────────────────────────────
+// UI HELPERS
+// ─────────────────────────────────────────────
+function updateResultCount() {
+  const el = document.getElementById('resultCount');
+  const total = allData.length;
+  const shown = filteredData.length;
+  if (shown === total) {
+    el.innerHTML = `<span>${total}</span> nội dung`;
+  } else {
+    el.innerHTML = `Hiển thị <span>${shown}</span>/${total} nội dung`;
+  }
+}
+
+function updateResetBtn() {
+  const hasFilter = state.coSo || state.nganh || state.chuDe || state.dinhDang || state.search;
+  document.getElementById('resetBtn').classList.toggle('visible', !!hasFilter);
+
+  // Đánh dấu select đang active
+  ['filterCoSo','filterNganh','filterChuDe','filterDinhDang'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.toggle('active', !!el.value);
+  });
+}
+
+function showLoading(show) {
+  document.getElementById('loadingState').style.display = show ? 'block' : 'none';
+}
+
+function hideError() {
+  document.getElementById('errorState').classList.remove('visible');
+}
+
+function showError(msg) {
+  const el = document.getElementById('errorState');
+  document.getElementById('errorMsg').textContent = msg;
+  el.classList.add('visible');
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#39;');
+}
+
+// ─────────────────────────────────────────────
+// EVENT LISTENERS
+// ─────────────────────────────────────────────
+document.getElementById('searchInput').addEventListener('input', function() {
+  state.search = this.value;
+  document.getElementById('clearSearch').classList.toggle('visible', !!this.value);
+  applyFilters();
+});
+
+document.getElementById('clearSearch').addEventListener('click', function() {
+  const inp = document.getElementById('searchInput');
+  inp.value = '';
+  state.search = '';
+  this.classList.remove('visible');
+  inp.focus();
+  applyFilters();
+});
+
+document.getElementById('filterCoSo').addEventListener('change', function() {
+  state.coSo = this.value;
+  applyFilters();
+});
+
+document.getElementById('filterNganh').addEventListener('change', function() {
+  state.nganh = this.value;
+  applyFilters();
+});
+
+document.getElementById('filterChuDe').addEventListener('change', function() {
+  state.chuDe = this.value;
+  applyFilters();
+});
+
+document.getElementById('filterDinhDang').addEventListener('change', function() {
+  state.dinhDang = this.value;
+  applyFilters();
+});
+
+// Reset tất cả filter
+document.getElementById('resetBtn').addEventListener('click', function() {
+  state.search = state.coSo = state.nganh = state.chuDe = state.dinhDang = '';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('clearSearch').classList.remove('visible');
+  ['filterCoSo','filterNganh','filterChuDe','filterDinhDang'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  applyFilters();
+});
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+loadData();
+</script>
+</body>
+</html>
